@@ -194,6 +194,7 @@ ActsExamples::ProcessCode ActsExamples::RootTrackParameterWriter::writeT(
       if (ip != particles.end()) {
         const auto& particle = *ip;
         m_t_charge = static_cast<int>(particle.charge());
+        m_particle_type = static_cast<int>(particle.pdg());
         m_t_qop = m_t_charge / p;
       } else {
         ACTS_DEBUG("Truth particle with barcode "

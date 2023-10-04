@@ -319,6 +319,7 @@ struct TrackSummaryReader : public TreeReader {
     tree->SetBranchAddress("t_pT", &t_pT);
     tree->SetBranchAddress("t_d0", &t_d0);
     tree->SetBranchAddress("t_z0", &t_z0);
+    tree->SetBranchAddress("particle_type", &particle_type);
     tree->SetBranchAddress("t_charge", &t_charge);
     tree->SetBranchAddress("t_time", &t_time);
 
@@ -381,6 +382,7 @@ struct TrackSummaryReader : public TreeReader {
   std::vector<float>* t_p = new std::vector<float>;
   std::vector<float>* t_pT = new std::vector<float>;
   std::vector<float>* t_time = new std::vector<float>;
+  std::vector<int>* particle_type = new std::vector<int>;
   std::vector<int>* t_charge = new std::vector<int>;
 
   // Estimated parameters

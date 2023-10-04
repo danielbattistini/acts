@@ -113,6 +113,7 @@ class RootTrackParameterWriter final : public TrackParameterWriter {
   float m_pt{NaNfloat};     ///< pt
   float m_eta{NaNfloat};    ///< eta
 
+  int m_particle_type{0};       ///< Truth particle pdg code
   int m_t_charge{0};            ///< Truth particle charge
   float m_t_loc0{NaNfloat};     ///< Truth parameter loc0
   float m_t_loc1{NaNfloat};     ///< Truth parameter loc1
