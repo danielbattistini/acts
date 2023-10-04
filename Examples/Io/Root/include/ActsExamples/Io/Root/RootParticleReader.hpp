@@ -103,6 +103,8 @@ class RootParticleReader : public IReader {
 
   std::vector<uint64_t>* m_particleId = new std::vector<uint64_t>;
   std::vector<int32_t>* m_particleType = new std::vector<int32_t>;
+  std::vector<int32_t>* m_mother1ParticleId = new std::vector<int32_t>;
+  std::vector<int32_t>* m_mother2ParticleId = new std::vector<int32_t>;
   std::vector<uint32_t>* m_process = new std::vector<uint32_t>;
   std::vector<float>* m_vx = new std::vector<float>;
   std::vector<float>* m_vy = new std::vector<float>;

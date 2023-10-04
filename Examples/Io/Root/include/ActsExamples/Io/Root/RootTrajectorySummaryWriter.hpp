@@ -134,6 +134,8 @@ class RootTrajectorySummaryWriter final
   std::vector<uint64_t>
       m_majorityParticleId;      ///< The particle Id of the majority particle
   std::vector<int> m_particle_type;///< Pdg code
+  std::vector<int> m_mother1_particle_id; ///< Index of mother 1
+  std::vector<int> m_mother2_particle_id; ///< Index of mother 2
   std::vector<int> m_t_charge;   ///< Charge of majority particle
   std::vector<float> m_t_time;   ///< Time of majority particle
   std::vector<float> m_t_vx;     ///< Vertex x positions of majority particle

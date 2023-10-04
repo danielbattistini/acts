@@ -136,6 +136,8 @@ ActsExamples::SimParticleContainer ActsExamples::Pythia8Generator::operator()(
         std::hypot(genParticle.px(), genParticle.py(), genParticle.pz()) *
         1_GeV);
 
+    particle.setMother1ParticleId(genParticle.mother1());
+    particle.setMother2ParticleId(genParticle.mother2());
     generated.push_back(std::move(particle));
   }
 

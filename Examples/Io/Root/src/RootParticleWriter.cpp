@@ -69,6 +69,8 @@ ActsExamples::RootParticleWriter::RootParticleWriter(
   m_outputTree->Branch("particle", &m_particle);
   m_outputTree->Branch("generation", &m_generation);
   m_outputTree->Branch("sub_particle", &m_subParticle);
+  m_outputTree->Branch("mother1_particle_id", &m_mother1ParticleId);
+  m_outputTree->Branch("mother2_particle_id", &m_mother2ParticleId);
 }
 
 ActsExamples::RootParticleWriter::~RootParticleWriter() {
@@ -96,6 +98,8 @@ ActsExamples::ProcessCode ActsExamples::RootParticleWriter::writeT(
   m_eventId = ctx.eventNumber;
   for (const auto& particle : particles) {
     m_particleId.push_back(particle.particleId().value());
+    m_mother1ParticleId.push_back(particle.mother1ParticleId());
+    m_mother2ParticleId.push_back(particle.mother2ParticleId());
     m_particleType.push_back(particle.pdg());
     m_process.push_back(static_cast<uint32_t>(particle.process()));
     // position
@@ -156,6 +160,8 @@ ActsExamples::ProcessCode ActsExamples::RootParticleWriter::writeT(
   m_particle.clear();
   m_generation.clear();
   m_subParticle.clear();
+  m_mother1ParticleId.clear();
+  m_mother2ParticleId.clear();
 
   return ProcessCode::SUCCESS;
 }

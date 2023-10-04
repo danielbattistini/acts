@@ -97,6 +97,8 @@ ActsExamples::RootTrajectorySummaryWriter::RootTrajectorySummaryWriter(
     m_outputTree->Branch("nMajorityHits", &m_nMajorityHits);
     m_outputTree->Branch("majorityParticleId", &m_majorityParticleId);
     m_outputTree->Branch("particle_type", &m_particle_type);
+    m_outputTree->Branch("mother1_particle_id", &m_mother1_particle_id);
+    m_outputTree->Branch("mother2_particle_id", &m_mother2_particle_id);
     m_outputTree->Branch("t_charge", &m_t_charge);
     m_outputTree->Branch("t_time", &m_t_time);
     m_outputTree->Branch("t_vx", &m_t_vx);
@@ -273,6 +275,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
           std::numeric_limits<size_t>::max());
       unsigned int nMajorityHits = std::numeric_limits<unsigned int>::max();
       int particle_type = NaNint;
+      int mother1_particle_id = NaNint;
+      int mother2_particle_id = NaNint;
       int t_charge = std::numeric_limits<int>::max();
       float t_time = NaNfloat;
       float t_vx = NaNfloat;
@@ -319,6 +323,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
           // Get the truth particle info at vertex
           t_p = particle.absoluteMomentum();
           particle_type = static_cast<int>(particle.pdg());
+          mother1_particle_id = static_cast<int>(particle.mother1ParticleId());
+          mother2_particle_id = static_cast<int>(particle.mother2ParticleId());
           t_charge = static_cast<int>(particle.charge());
           t_time = particle.time();
           t_vx = particle.position().x();
@@ -367,6 +373,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
       m_majorityParticleId.push_back(majorityParticleId.value());
       m_nMajorityHits.push_back(nMajorityHits);
       m_particle_type.push_back(particle_type);
+      m_mother1_particle_id.push_back(mother1_particle_id);
+      m_mother2_particle_id.push_back(mother2_particle_id);
       m_t_charge.push_back(t_charge);
       m_t_time.push_back(t_time);
       m_t_vx.push_back(t_vx);
@@ -537,6 +545,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
   m_nMajorityHits.clear();
   m_majorityParticleId.clear();
   m_particle_type.clear();
+  m_mother1_particle_id.clear();
+  m_mother2_particle_id.clear();
   m_t_charge.clear();
   m_t_time.clear();
   m_t_vx.clear();

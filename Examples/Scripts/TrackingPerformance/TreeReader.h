@@ -320,6 +320,8 @@ struct TrackSummaryReader : public TreeReader {
     tree->SetBranchAddress("t_d0", &t_d0);
     tree->SetBranchAddress("t_z0", &t_z0);
     tree->SetBranchAddress("particle_type", &particle_type);
+    tree->SetBranchAddress("mother1_particle_id", &mother1_particle_id);
+    tree->SetBranchAddress("mother2_particle_id", &mother2_particle_id);
     tree->SetBranchAddress("t_charge", &t_charge);
     tree->SetBranchAddress("t_time", &t_time);
 
@@ -383,6 +385,8 @@ struct TrackSummaryReader : public TreeReader {
   std::vector<float>* t_pT = new std::vector<float>;
   std::vector<float>* t_time = new std::vector<float>;
   std::vector<int>* particle_type = new std::vector<int>;
+  std::vector<int>* mother1_particle_id = new std::vector<int>;
+  std::vector<int>* mother2_particle_id = new std::vector<int>;
   std::vector<int>* t_charge = new std::vector<int>;
 
   // Estimated parameters
@@ -413,6 +417,8 @@ struct ParticleReader : public TreeReader {
     tree->SetBranchAddress("event_id", &eventId);
     tree->SetBranchAddress("particle_id", &particleId);
     tree->SetBranchAddress("particle_type", &particleType);
+    tree->SetBranchAddress("mother1_particle_id", &mother1ParticleId);
+    tree->SetBranchAddress("mother2_particle_id", &mother2ParticleId);
     tree->SetBranchAddress("vx", &vx);
     tree->SetBranchAddress("vy", &vy);
     tree->SetBranchAddress("vz", &vz);
@@ -465,6 +471,8 @@ struct ParticleReader : public TreeReader {
   ULong64_t eventId = 0;
   ULong64_t particleId = 0;
   Int_t particleType = 0;
+  Int_t mother1ParticleId = 0;
+  Int_t mother2ParticleId = 0;
   float vx = 0, vy = 0, vz = 0;
   float vt = 0;
   float px = 0, py = 0, pz = 0;

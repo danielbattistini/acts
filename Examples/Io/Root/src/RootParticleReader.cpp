@@ -45,6 +45,8 @@ ActsExamples::RootParticleReader::RootParticleReader(
   m_inputChain->SetBranchAddress("event_id", &m_eventId);
   m_inputChain->SetBranchAddress("particle_id", &m_particleId);
   m_inputChain->SetBranchAddress("particle_type", &m_particleType);
+  m_inputChain->SetBranchAddress("m_mother1_particle_id", &m_mother1ParticleId);
+  m_inputChain->SetBranchAddress("m_mother2_particle_id", &m_mother2ParticleId);
   m_inputChain->SetBranchAddress("process", &m_process);
   m_inputChain->SetBranchAddress("vx", &m_vx);
   m_inputChain->SetBranchAddress("vy", &m_vy);
@@ -92,6 +94,8 @@ std::pair<size_t, size_t> ActsExamples::RootParticleReader::availableEvents()
 ActsExamples::RootParticleReader::~RootParticleReader() {
   delete m_particleId;
   delete m_particleType;
+  delete m_mother1ParticleId;
+  delete m_mother2ParticleId;
   delete m_process;
   delete m_vx;
   delete m_vy;
@@ -150,6 +154,8 @@ ActsExamples::ProcessCode ActsExamples::RootParticleReader::read(
       p.setCharge((*m_q)[i] * Acts::UnitConstants::e);
       p.setMass((*m_m)[i] * Acts::UnitConstants::GeV);
       p.setParticleId((*m_particleId)[i]);
+      p.setMother1ParticleId((*m_mother1ParticleId)[i]);
+      p.setMother2ParticleId((*m_mother2ParticleId)[i]);
       p.setPosition4((*m_vx)[i] * Acts::UnitConstants::mm,
                      (*m_vy)[i] * Acts::UnitConstants::mm,
                      (*m_vz)[i] * Acts::UnitConstants::mm,
