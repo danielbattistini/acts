@@ -136,8 +136,13 @@ ActsExamples::SimParticleContainer ActsExamples::Pythia8Generator::operator()(
         std::hypot(genParticle.px(), genParticle.py(), genParticle.pz()) *
         1_GeV);
 
-    particle.setMother1ParticleId(genParticle.mother1());
-    particle.setMother2ParticleId(genParticle.mother2());
+    int mother1Id = genParticle.mother1();
+    int mother2Id = genParticle.mother2();
+
+    particle.setMother1ParticleId(mother1Id);
+    particle.setMother2ParticleId(mother2Id);
+    particle.setMother1Pdg(m_pythia8->event[mother1Id].id());
+    particle.setMother2Pdg(m_pythia8->event[mother2Id].id());
     generated.push_back(std::move(particle));
   }
 

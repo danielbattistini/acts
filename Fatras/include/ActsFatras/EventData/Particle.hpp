@@ -78,17 +78,24 @@ class Particle {
     m_pdg = pdg;
     return *this;
   }
+  /// Set the index of the mother 1 particle.
   Particle setMother1ParticleId(int particleId) {
     m_mother1ParticleId = particleId;
     return *this;
   }
+  /// Set the index of the mother 2 particle.
   Particle setMother2ParticleId(int particleId) {
     m_mother2ParticleId = particleId;
     return *this;
   }
-  /// Set the pdg of the mother particle.
-  Particle setMotherPdg(Acts::PdgParticle pdg) {
-    m_motherPdg = pdg;
+  /// Set the pdg of the mother 1 particle.
+  Particle setMother1Pdg(int32_t pdg) {
+    m_mother1Pdg = pdg;
+    return *this;
+  }
+  /// Set the pdg of the mother 2 particle.
+  Particle setMother2Pdg(int32_t pdg) {
+    m_mother2Pdg = pdg;
     return *this;
   }
   /// Set the charge.
@@ -162,10 +169,14 @@ class Particle {
 
   /// Particle identifier within an event.
   constexpr Barcode particleId() const { return m_particleId; }
-  /// Mother 2 particle identifier within an event.
+  /// Mother 1 particle identifier within an event.
   constexpr int mother1ParticleId() const { return m_mother1ParticleId; }
   /// Mother 2 particle identifier within an event.
   constexpr int mother2ParticleId() const { return m_mother2ParticleId; }
+  /// PDG partcle number that identifies the type of mother 1
+  constexpr int32_t mother1Pdg() const { return m_mother1Pdg; }
+  /// PDG partcle number that identifies the type of mother 2
+  constexpr int32_t mother2Pdg() const { return m_mother2Pdg; }
   /// Which type of process generated this particle.
   constexpr ProcessType process() const { return m_process; }
   /// PDG particle number that identifies the type.
@@ -174,8 +185,6 @@ class Particle {
   constexpr Acts::PdgParticle absolutePdg() const {
     return Acts::makeAbsolutePdgParticle(pdg());
   }
-  /// PDG particle number that identifies the type of the mother particle.
-  constexpr Acts::PdgParticle motherPdg() const { return m_motherPdg; }
   /// Particle charge.
   constexpr Scalar charge() const { return m_charge; }
   /// Particle absolute charge.
@@ -187,7 +196,6 @@ class Particle {
   constexpr Acts::ParticleHypothesis hypothesis() const {
     return Acts::ParticleHypothesis(absolutePdg(), mass(), absoluteCharge());
   }
-
   /// Particl qOverP.
   constexpr Scalar qOverP() const {
     return hypothesis().qOverP(absoluteMomentum(), charge());
@@ -281,7 +289,8 @@ class Particle {
   int m_mother1ParticleId;
   int m_mother2ParticleId;
 
-  Acts::PdgParticle m_motherPdg = Acts::PdgParticle::eInvalid;
+  int32_t m_mother1Pdg;
+  int32_t m_mother2Pdg;
 };
 
 std::ostream &operator<<(std::ostream &os, const Particle &particle);

@@ -116,6 +116,8 @@ class RootTrackParameterWriter final : public TrackParameterWriter {
   int m_particle_type{0};       ///< Truth particle pdg code
   int m_mother1_particle_id{0}; ///< Index of mother 1
   int m_mother2_particle_id{0}; ///< Index of mother 2
+  int m_mother1_pdg{0};         ///< Truth mother 1 particle pdg code
+  int m_mother2_pdg{0};         ///< Truth mother 2 particle pdg code
   int m_t_charge{0};            ///< Truth particle charge
   float m_t_loc0{NaNfloat};     ///< Truth parameter loc0
   float m_t_loc1{NaNfloat};     ///< Truth parameter loc1

@@ -79,6 +79,8 @@ class RootParticleWriter final : public WriterT<SimParticleContainer> {
   std::vector<uint64_t> m_particleId;
   std::vector<int32_t> m_mother1ParticleId;
   std::vector<int32_t> m_mother2ParticleId;
+  std::vector<int32_t> m_mother1Pdg;
+  std::vector<int32_t> m_mother2Pdg;
   /// Particle type a.k.a. PDG particle number
   std::vector<int32_t> m_particleType;
   /// Production process type, i.e. what generated the particle.

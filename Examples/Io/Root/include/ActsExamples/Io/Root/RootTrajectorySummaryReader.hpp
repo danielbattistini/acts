@@ -141,11 +141,15 @@ class RootTrajectorySummaryReader : public IReader {
   std::vector<uint64_t>* m_majorityParticleId =
       new std::vector<uint64_t>;  ///< The particle Id of the majority particle
   std::vector<int>* m_particle_type =
-      new std::vector<int>;  ///< Index of mother 1
-  std::vector<int>* m_mother1_particle_id =
-      new std::vector<int>;  ///< Index of mother 2
-  std::vector<int>* m_mother2_particle_id =
       new std::vector<int>;  ///< Pdg code of majority particle
+  std::vector<int>* m_mother1_particle_id =
+      new std::vector<int>;  ///< Index of mother 1
+  std::vector<int>* m_mother2_particle_id =
+      new std::vector<int>;  ///< Index of mother 2
+  std::vector<int>* m_mother1_pdg =
+      new std::vector<int>;  ///< Pdg code of mother 1 
+  std::vector<int>* m_mother2_pdg =
+      new std::vector<int>;  ///< Pdg code of mother 2 
   std::vector<int>* m_t_charge =
       new std::vector<int>;  ///< Charge of majority particle
   std::vector<float>* m_t_time =

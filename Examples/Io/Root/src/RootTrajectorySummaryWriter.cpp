@@ -99,6 +99,8 @@ ActsExamples::RootTrajectorySummaryWriter::RootTrajectorySummaryWriter(
     m_outputTree->Branch("particle_type", &m_particle_type);
     m_outputTree->Branch("mother1_particle_id", &m_mother1_particle_id);
     m_outputTree->Branch("mother2_particle_id", &m_mother2_particle_id);
+    m_outputTree->Branch("mother1_pdg", &m_mother1_pdg);
+    m_outputTree->Branch("mother2_pdg", &m_mother2_pdg);
     m_outputTree->Branch("t_charge", &m_t_charge);
     m_outputTree->Branch("t_time", &m_t_time);
     m_outputTree->Branch("t_vx", &m_t_vx);
@@ -277,6 +279,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
       int particle_type = NaNint;
       int mother1_particle_id = NaNint;
       int mother2_particle_id = NaNint;
+      int mother1_pdg = NaNint;
+      int mother2_pdg = NaNint;
       int t_charge = std::numeric_limits<int>::max();
       float t_time = NaNfloat;
       float t_vx = NaNfloat;
@@ -325,6 +329,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
           particle_type = static_cast<int>(particle.pdg());
           mother1_particle_id = static_cast<int>(particle.mother1ParticleId());
           mother2_particle_id = static_cast<int>(particle.mother2ParticleId());
+          mother1_pdg = static_cast<int>(particle.mother1Pdg());
+          mother2_pdg = static_cast<int>(particle.mother2Pdg());
           t_charge = static_cast<int>(particle.charge());
           t_time = particle.time();
           t_vx = particle.position().x();
@@ -375,6 +381,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
       m_particle_type.push_back(particle_type);
       m_mother1_particle_id.push_back(mother1_particle_id);
       m_mother2_particle_id.push_back(mother2_particle_id);
+      m_mother1_pdg.push_back(mother1_pdg);
+      m_mother2_pdg.push_back(mother2_pdg);
       m_t_charge.push_back(t_charge);
       m_t_time.push_back(t_time);
       m_t_vx.push_back(t_vx);
@@ -547,6 +555,8 @@ ActsExamples::ProcessCode ActsExamples::RootTrajectorySummaryWriter::writeT(
   m_particle_type.clear();
   m_mother1_particle_id.clear();
   m_mother2_particle_id.clear();
+  m_mother1_pdg.clear();
+  m_mother2_pdg.clear();
   m_t_charge.clear();
   m_t_time.clear();
   m_t_vx.clear();

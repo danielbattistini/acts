@@ -63,6 +63,8 @@ ActsExamples::RootTrajectorySummaryReader::RootTrajectorySummaryReader(
   m_inputChain->SetBranchAddress("particle_type", &m_particle_type);
   m_inputChain->SetBranchAddress("mother1_particle_id", &m_mother1_particle_id);
   m_inputChain->SetBranchAddress("mother2_particle_id", &m_mother2_particle_id);
+  m_inputChain->SetBranchAddress("mother1_pdg", &m_mother1_pdg);
+  m_inputChain->SetBranchAddress("mother2_pdg", &m_mother2_pdg);
   m_inputChain->SetBranchAddress("t_charge", &m_t_charge);
   m_inputChain->SetBranchAddress("t_time", &m_t_time);
   m_inputChain->SetBranchAddress("t_vx", &m_t_vx);
@@ -134,6 +136,8 @@ ActsExamples::RootTrajectorySummaryReader::~RootTrajectorySummaryReader() {
   delete m_particle_type;
   delete m_mother1_particle_id;
   delete m_mother2_particle_id;
+  delete m_mother1_pdg;
+  delete m_mother2_pdg;
   delete m_t_charge;
   delete m_t_time;
   delete m_t_vx;
